@@ -1,0 +1,28 @@
+To restructure the project to adhere to the Model-View-Controller (MVC) pattern, I made several changes and introduced new components. Here's an overview of the restructuring process and the challenges I encountered:
+
+1. **Creating Directories:** I organized the project into distinct directories for Models, Views, and Controllers to separate concerns and follow the MVC pattern. This involved creating folders named `models`, `views`, and `controllers`.
+
+2. **Moving Existing Code:** I moved the existing code that defined routes and included middleware from the `index.js` file into separate controller files inside the `controllers` directory. For example, the registration and login routes were moved to a `userController.js` file, while the dashboard and logout routes were moved to a `dashboardController.js` file.
+
+3. **Defining Models:** I created a `models` directory and introduced a `User` model to represent user data. This model is responsible for managing user-related data, including registration, authentication, and user sessions. I used an in-memory data structure (an array) to store user information, as a database wasn't used in this example.
+
+4. **Views Templating:** I retained the existing EJS views in the `views` directory but made sure they were organized and had meaningful names. For instance, I kept the `register.ejs` and `login.ejs` views for user-related pages.
+
+5. **Controller Logic:** Each controller file (`userController.js` and `dashboardController.js`) is responsible for handling specific route logic. For example, the `userController.js` contains logic for user registration and login, while the `dashboardController.js` handles the dashboard and logout routes.
+
+6. **Refactoring Routes:** In the `userController.js` and `dashboardController.js`, I defined route handlers using `express.Router()`. This allowed me to modularize route handling logic and keep the `index.js` file clean.
+
+7. **Middleware Reuse:** I reused the Passport.js configuration and middleware in the `index.js` file to ensure user authentication and session management were still in place.
+
+Challenges Encountered:
+- The primary challenge was refactoring the existing code to fit the MVC pattern while ensuring that the functionality of user registration, login, and session management remained intact.
+- Ensuring the proper organization of routes and middleware required careful consideration to avoid conflicts and maintain a clean code structure.
+- The absence of a database in this example meant that user data had to be stored in-memory. This simplified the development process but may not be suitable for production applications where persistent data storage is necessary.
+
+How I Overcame These Challenges:
+- I meticulously reviewed and refactored the code step by step, testing each route and functionality as I moved it to the appropriate controller.
+- I used `express.Router()` to create modular route handlers within the controllers, which helped maintain organization and readability.
+- I relied on clear naming conventions and comments to make the codebase more understandable and maintainable.
+- While an in-memory data structure was used for this example, I made it clear that, in a real-world scenario, a database would be the preferred choice for data storage and retrieval.
+
+By restructuring the project in this way, I aimed to adhere to the MVC pattern's principles of separation of concerns, maintainability, and scalability, which can be beneficial in larger and more complex applications.
